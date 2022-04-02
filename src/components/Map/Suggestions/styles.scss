@@ -1,11 +1,39 @@
+@import "../../../styles/variables";
+
+$firstChildBg: #e7e5e5;
+$hoverBg: #eeeeee;
+
 $borderRadius: 2px;
 $boxShadow: 0 0 10px 2px #00000033;
 
-.suggestion {
-  background-color: #ffffff;
-  border: none;
-  border-radius: $borderRadius;
-  box-shadow: $boxShadow;
-  color: black;
-  padding: 0.6rem;
+.suggestions {
+  .suggestion {
+    background-color: #ffffff;
+    border: none;
+    border-radius: $borderRadius;
+    color: black;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0.6rem;
+
+    &:first-child {
+      background-color: $firstChildBg;
+    }
+
+    &:hover {
+      background-color: $hoverBg;
+    }
+
+    &__title {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &__desc {
+      color: $secondaryTextColor;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 }

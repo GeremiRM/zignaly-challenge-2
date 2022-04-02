@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { ILocations, Coordinates } from "../../../types/Location";
 
 import "./styles.scss";
@@ -6,30 +5,26 @@ import "./styles.scss";
 interface SuggestionsProps {
   suggestions: ILocations;
   onSelect: (coords: Coordinates) => void;
+  display: boolean;
 }
 
 export const Suggestions: React.FC<SuggestionsProps> = ({
   suggestions,
   onSelect,
+  display,
 }) => {
-  const [display, setDisplay] = useState(false);
-
-  useEffect(() => {
-    setDisplay(!!suggestions);
-  }, [suggestions]);
-
   const renderSuggestions = () => {
     return suggestions?.map((suggestion) => (
-      <p
-        key={suggestion?.id}
+      <div
         className="suggestion"
+        key={suggestion?.id}
         onClick={() => {
-          setDisplay(false);
           onSelect(suggestion.geometry.coordinates);
         }}
       >
-        {suggestion?.place_name}
-      </p>
+        <p className="suggestion__title">{suggestion.text}</p>
+        <p className="suggestion__desc">{suggestion?.place_name}</p>
+      </div>
     ));
   };
 
