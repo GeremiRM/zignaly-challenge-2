@@ -1,0 +1,10 @@
+.app {
+  .body {
+    margin-top: 4rem;
+    .title {
+      &__line {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}

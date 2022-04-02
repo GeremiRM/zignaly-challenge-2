@@ -1,0 +1,9 @@
+$logoSize: 3rem;
+
+.header {
+  padding: 2rem 0;
+
+  &__logo {
+    height: $logoSize;
+  }
+}
