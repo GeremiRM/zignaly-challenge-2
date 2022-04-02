@@ -5,6 +5,7 @@ import { useFetchData } from "./hooks/useFetchData";
 import { Form } from "./components/form";
 
 import "./App.scss";
+import { Container } from "./components/form/shared/Container";
 
 type changeEvt = React.ChangeEvent<HTMLInputElement>;
 
@@ -18,7 +19,9 @@ function App() {
 
   return (
     <div className="app">
-      <Form value={input} onChange={onChange} />
+      <Container>
+        <Form value={input} onChange={onChange} />
+      </Container>
     </div>
   );
 }

@@ -1,0 +1,27 @@
+@import "./variables";
+
+// breakpoints
+
+@mixin small {
+  @media (min-width: $sm) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: $md) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: $lg) {
+    @content;
+  }
+}
+
+@mixin extraLarge {
+  @media (min-width: $xl) {
+    @content;
+  }
+}

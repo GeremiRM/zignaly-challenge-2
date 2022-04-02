@@ -1,0 +1,19 @@
+@import "../../../../styles/mixins";
+
+// widths
+$min-width: 375px;
+$max-width: 1160px;
+
+.container {
+  margin: 0 2rem;
+  max-width: $max-width;
+  // min-width: $min-width;
+
+  @include large {
+    margin: 0 5rem;
+  }
+
+  @include extraLarge {
+    margin: 0 auto;
+  }
+}
