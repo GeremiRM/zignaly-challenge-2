@@ -1,29 +1,24 @@
-import mapboxgl from "mapbox-gl";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
+import { useFetchData } from "./hooks/useFetchData";
 
-import "./App.css";
+// components
+import { Form } from "./components/form";
+
+import "./App.scss";
+
+type changeEvt = React.ChangeEvent<HTMLInputElement>;
 
 function App() {
-  const mapContainer = useRef(null);
-  const map = useRef<mapboxgl.Map | null>(null);
+  const [input, setInput] = useState("");
+  const { data } = useFetchData(input);
 
-  useEffect(() => {
-    if (map.current) return;
-
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current!,
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [-70.9, 42.35],
-      zoom: 9,
-    });
-  });
-
-  mapboxgl.accessToken = process.env.REACT_APP_API_KEY!;
+  const onChange = (e: changeEvt) => {
+    setInput(e.target.value);
+  };
 
   return (
-    <div className="App">
-      <div id="map"></div>
-      <div className="map-container" ref={mapContainer}></div>
+    <div className="app">
+      <Form value={input} onChange={onChange} />
     </div>
   );
 }
