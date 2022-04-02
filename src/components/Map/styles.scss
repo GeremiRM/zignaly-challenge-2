@@ -1,3 +1,33 @@
-.map-container {
-  height: 400px;
+@import "../../styles/variables";
+
+$inputBorderRadius: 2px;
+$inputBoxShadow: 0 0 10px 2px #00000033;
+
+.map {
+  position: relative;
+  .form {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 1;
+
+    &__input {
+      background-color: #ffffff;
+      border: none;
+      border-radius: $inputBorderRadius;
+      box-shadow: $inputBoxShadow;
+      filter: blur(0.8px);
+      padding: 0.6rem;
+      transition: 0.75s all ease;
+
+      &:focus {
+        filter: none;
+        outline: 1px solid $terciaryColor;
+      }
+    }
+  }
+  .map-container {
+    height: 450px;
+    position: relative;
+  }
 }

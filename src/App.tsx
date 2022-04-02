@@ -2,23 +2,16 @@ import { useState } from "react";
 import { useFetchData } from "./hooks/useFetchData";
 
 // components
-import { Form } from "./components/Form";
+import { Map } from "./components/Map";
 import { Container } from "./components/shared/Container";
 import { Header } from "./components/Header";
-import { Map } from "./components/Map";
 
 import "./App.scss";
 
 type changeEvt = React.ChangeEvent<HTMLInputElement>;
 
-type Coords = [number, number];
-
-// Madrid - Spain
-const DF_COORDS: Coords = [-3.703339, 40.416729];
-
 function App() {
   const [input, setInput] = useState("");
-  const [coords, setCoords] = useState<Coords>(DF_COORDS);
 
   const { data } = useFetchData(input);
 
@@ -29,16 +22,21 @@ function App() {
   return (
     <div className="app">
       <Container>
+        {/* Header */}
         <Header />
+
+        {/* Body */}
         <main className="body">
+          {/* Title */}
           <div className="title">
             <h1 className="title__line">
               Our API allows you to search for addresses and places by name
             </h1>
             <h1 className="title__line">Give it a shot!</h1>
           </div>
-          <Form value={input} onChange={onChange} />
-          <Map coordinates={coords} />
+
+          {/* Map */}
+          <Map value={input} onChange={onChange} locations={data} />
         </main>
       </Container>
     </div>

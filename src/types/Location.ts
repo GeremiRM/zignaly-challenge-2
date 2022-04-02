@@ -1,4 +1,4 @@
-import { GeometryObject } from "geojson";
+export type ILocations = ILocation[] | undefined;
 
 export interface ILocation {
   id: string;
@@ -10,8 +10,13 @@ export interface ILocation {
   place_name: string;
   bbox: number[];
   center: number[];
-  geometry: GeometryObject;
+  geometry: Geometry;
   context: Context[];
+}
+
+export interface Geometry {
+  type: string;
+  coordinates: Coordinates;
 }
 
 export interface Context {
@@ -25,3 +30,5 @@ export interface Properties {
   short_code: string;
   wikidata: string;
 }
+
+export type Coordinates = [number, number];
