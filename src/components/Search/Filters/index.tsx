@@ -1,18 +1,14 @@
-import { PlaceType } from "../../../types/Location";
+import { useContext } from "react";
+import { Context } from "../../../state/Context";
+
 import { DF_FILTERS } from "../../../constants";
 
 import "./styles.scss";
 
-interface ListFiltersProps {
-  activeFilters: PlaceType[];
-  onSelect: (e: PlaceType) => void;
-}
-
-export const ListFilters: React.FC<ListFiltersProps> = ({
-  onSelect,
-  activeFilters,
-}) => {
+export const ListFilters: React.FC = () => {
   const filters = DF_FILTERS;
+
+  const { activeFilters, selectFilter } = useContext(Context);
 
   const renderFilters = () => {
     return filters.map((filter) => (
@@ -23,7 +19,7 @@ export const ListFilters: React.FC<ListFiltersProps> = ({
         }
         key={filter}
         onClick={() => {
-          onSelect(filter);
+          selectFilter(filter);
         }}
       >
         {filter}

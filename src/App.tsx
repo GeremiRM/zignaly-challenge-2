@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useFetchData } from "./hooks/useFetchData";
 
 // components
@@ -8,12 +8,15 @@ import { Header } from "./components/Header";
 
 import "./App.scss";
 import { List } from "./components/List";
+import { Context } from "./state/Context";
 
 type changeEvt = React.ChangeEvent<HTMLInputElement>;
 
 function App() {
   const [input, setInput] = useState("");
-  const { data } = useFetchData(input);
+  const { activeFilters } = useContext(Context);
+
+  const { data } = useFetchData(input, activeFilters);
 
   const onChange = (e: changeEvt) => {
     setInput(e.target.value);

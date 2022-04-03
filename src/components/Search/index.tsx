@@ -4,7 +4,7 @@ import { Suggestions } from "./Suggestions";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import "./styles.scss";
 
-import { ILocations, Coordinates, PlaceType } from "../../types/Location";
+import { ILocations, Coordinates } from "../../types/Location";
 import { Map } from "./Map";
 import { ListFilters } from "./Filters";
 
@@ -23,7 +23,6 @@ const DF_COORDS: Coordinates = [-3.703339, 40.416729];
 
 export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
   const [coords, setCoords] = useState<Coordinates>(DF_COORDS);
-  const [activeFilters, setActiveFilters] = useState<PlaceType[]>([]);
   const [displaySuggs, setDisplaySuggs] = useState(false);
 
   const ref = useDetectClickOutside({
@@ -34,14 +33,6 @@ export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
   const selectSugg = (coordinates: Coordinates) => {
     setCoords(coordinates);
     setDisplaySuggs(false);
-  };
-
-  const selectFilter = (selected: PlaceType) => {
-    setActiveFilters(
-      activeFilters.includes(selected)
-        ? activeFilters.filter((filter) => selected !== filter)
-        : activeFilters.concat(selected)
-    );
   };
 
   const onSubmit = (e: submitEvt) => {
@@ -56,8 +47,7 @@ export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
   return (
     <section className="map">
       {/* Filters */}
-
-      <ListFilters onSelect={selectFilter} activeFilters={activeFilters} />
+      <ListFilters />
 
       {/* Form */}
       <form className="form" autoComplete="off" onSubmit={onSubmit} ref={ref}>

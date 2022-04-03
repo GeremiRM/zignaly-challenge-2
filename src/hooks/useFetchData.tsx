@@ -8,7 +8,7 @@ export const useFetchData = (input: string, filters?: PlaceType[]) => {
     const { data } = await axios.get(
       `${API_URL} ${encodeURIComponent(
         input
-      )}.json?limit=10&type=${filters?.join(",")}&access_token=${API_KEY}`
+      )}.json?limit=10&types=${filters?.join(",")}&access_token=${API_KEY}`
     );
 
     return data.features;

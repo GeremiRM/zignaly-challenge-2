@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import { QueryClientProvider, QueryClient } from "react-query";
+import { ContextProvider } from "./state/Context";
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,9 @@ const root = ReactDOMClient.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ContextProvider>
+        <App />
+      </ContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

@@ -31,13 +31,6 @@ export const List: React.FC<ListProps> = ({ locations }) => {
 
   return (
     <section className="list">
-      {/* List Filters */}
-      {/* <ListFilters
-        filters={DF_FILTERS}
-        onSelect={selectFilter}
-        activeFilters={filters}
-      /> */}
-
       {/* Table */}
       <div className="table-container">
         <table className="table">
