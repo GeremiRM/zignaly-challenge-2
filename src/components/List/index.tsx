@@ -1,29 +1,21 @@
 import "./styles.scss";
 
-import { ILocations, Coordinates, PlaceType } from "../../types/Location";
-import { useState } from "react";
-// import { ListFilters } from "./Filters";
+import { ILocations, Coordinates } from "../../types/Location";
 
 interface ListProps {
   locations: ILocations;
 }
 
 export const List: React.FC<ListProps> = ({ locations }) => {
-  const [filters, setFilters] = useState<PlaceType[]>([]);
-
   const renderCoords = (coords: Coordinates) => {
     return `Lat: ${coords[0].toFixed(3)}, Log: ${coords[1].toFixed(3)}`;
   };
 
   const renderLocations = () => {
-    const filteredLocations =
-      filters.length > 0
-        ? locations?.filter(({ place_type }) => filters.includes(...place_type))
-        : locations;
-
-    return filteredLocations?.map((location) => (
+    return locations?.map((location) => (
       <tr className="row" key={location.id}>
         <td className="data">{location.text}</td>
+        <td className="data">{location.place_name}</td>
         <td className="data">{renderCoords(location.geometry.coordinates)}</td>
       </tr>
     ));
@@ -32,12 +24,15 @@ export const List: React.FC<ListProps> = ({ locations }) => {
   return (
     <section className="list">
       {/* Table */}
+
+      <h2 className="list__title">Results</h2>
       <div className="table-container">
         <table className="table">
           {/* Table - Head */}
           <thead className="head">
             <tr className="row">
               <th className="headers">Name</th>
+              <th className="headers">Description</th>
               <th className="headers">Coordinates</th>
             </tr>
           </thead>

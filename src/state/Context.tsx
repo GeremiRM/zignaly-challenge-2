@@ -9,7 +9,7 @@ interface IContext {
 export const Context = createContext<IContext>({} as IContext);
 
 export const ContextProvider = (props: any) => {
-  const [activeFilters, setActiveFilters] = useState<PlaceType[]>([]);
+  const [activeFilters, setActiveFilters] = useState<PlaceType[]>(["place"]);
 
   const selectFilter = (selected: PlaceType) => {
     setActiveFilters(
