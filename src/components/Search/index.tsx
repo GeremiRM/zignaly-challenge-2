@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BiSearchAlt2 } from "react-icons/bi";
 import { useDetectClickOutside } from "react-detect-click-outside";
 
 // Components
@@ -7,6 +6,8 @@ import { Suggestions } from "./Suggestions";
 import { Map } from "./Map";
 import { Filters } from "./Filters";
 
+import { BiSearchAlt2 } from "react-icons/bi";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import "./styles.scss";
 
 import { ILocations, Coordinates } from "../../types/Location";
@@ -17,6 +18,7 @@ interface MapProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   locations: ILocations;
+  isLoading: boolean;
 }
 
 // Default values
@@ -24,7 +26,12 @@ interface MapProps {
 // Madrid
 const DF_COORDS: Coordinates = [-3.703339, 40.416729];
 
-export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
+export const Search: React.FC<MapProps> = ({
+  value,
+  onChange,
+  locations,
+  isLoading,
+}) => {
   const [coords, setCoords] = useState<Coordinates>(DF_COORDS);
   const [displaySuggs, setDisplaySuggs] = useState(false);
 
@@ -56,7 +63,7 @@ export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
       <form className="form" autoComplete="off" onSubmit={onSubmit} ref={ref}>
         {/* Input */}
         <div className="input">
-          <BiSearchAlt2 className="input__icon" />
+          <BiSearchAlt2 className="input__icon input__icon--search" />
           <input
             className="input__bar"
             value={value}
@@ -64,6 +71,9 @@ export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
             onChange={onChange}
             onFocus={(e) => setDisplaySuggs(true)}
           />
+          {isLoading && (
+            <AiOutlineLoading3Quarters className="input__icon input__icon--loading" />
+          )}
         </div>
 
         {/* Suggestions */}

@@ -1,28 +1,43 @@
 @import "../../../styles/mixins";
 
+$filterBg: #444;
+$filterHoverBg: #555;
+$filterActiveBg: #333;
+$filterActiveHoverBg: #3d3d3d;
+
 .search-filters {
+  .title {
+    background-color: $filterActiveBg;
+    font-size: 16px;
+    margin-bottom: 0.1rem;
+    padding: 0.25rem 0;
+    text-align: center;
+  }
+
   .filters {
     display: grid;
     gap: 0.1rem;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
     &__filter {
-      background-color: #444;
+      background-color: $filterBg;
       cursor: pointer;
       font-size: 13px;
       padding: 0.5rem 0.5rem;
       text-align: center;
       text-transform: capitalize;
+      transition: 0.25s ease all;
 
       &:hover {
-        background-color: #555;
+        background-color: $filterHoverBg;
       }
 
       &--active {
-        background-color: #333;
+        background-color: $filterActiveBg;
+        box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.75) inset;
 
         &:hover {
-          background-color: #3d3d3d;
+          background-color: $filterActiveHoverBg;
         }
       }
     }

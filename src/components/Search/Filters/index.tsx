@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Context } from "../../../state/Context";
-
-import { DF_FILTERS } from "../../../constants";
 
 import "./styles.scss";
+
+import { Context } from "../../../state/Context";
+import { DF_FILTERS } from "../../../constants";
 
 export const Filters: React.FC = () => {
   const filters = DF_FILTERS;
@@ -15,7 +15,7 @@ export const Filters: React.FC = () => {
       <p
         className={
           "filters__filter" +
-          ` ${activeFilters.includes(filter) && "list-filters__filter--active"}`
+          ` ${activeFilters.includes(filter) && "filters__filter--active"}`
         }
         key={filter}
         onClick={() => {

@@ -5,21 +5,15 @@
   padding-bottom: 4rem;
   background: linear-gradient(
     180deg,
-    $secondaryColor 400px,
-    $terciaryColor 400px
+    $highlightColor 300px,
+    $terciaryColor 600px
   );
   color: $textColor;
   font-family: "Roboto", sans-serif;
   min-height: 120vh;
+  min-width: 375px;
   padding-bottom: 4rem;
 
-  @include large {
-    background: linear-gradient(
-      180deg,
-      $secondaryColor 800px,
-      $terciaryColor 800px
-    );
-  }
   .title {
     margin-top: 4rem;
 

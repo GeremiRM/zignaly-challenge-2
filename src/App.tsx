@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
-import { useFetchData } from "./hooks/useFetchData";
 
 // components
 import { Search } from "./components/Search";
 import { Container } from "./components/shared/Container";
 import { Header } from "./components/Header";
-import { Context } from "./state/Context";
+import { Results } from "./components/Results";
 
 import "./App.scss";
-import { List } from "./components/List";
+
+import { useFetchData } from "./hooks/useFetchData";
+import { Context } from "./state/Context";
 
 type changeEvt = React.ChangeEvent<HTMLInputElement>;
 
@@ -16,7 +17,7 @@ function App() {
   const [input, setInput] = useState("");
   const { activeFilters } = useContext(Context);
 
-  const { data } = useFetchData(input, activeFilters);
+  const { data, isLoading } = useFetchData(input, activeFilters);
 
   const onChange = (e: changeEvt) => {
     setInput(e.target.value);
@@ -30,7 +31,7 @@ function App() {
 
         <section className="title">
           <h1 className="title__line">
-            Our API allows you to search for addresses and places by name
+            Our API allows you to search for addresses and places by name!
           </h1>
           <h1 className="title__line">Give it a shot!</h1>
         </section>
@@ -40,10 +41,15 @@ function App() {
           {/* Title */}
 
           {/* Map */}
-          <Search value={input} onChange={onChange} locations={data} />
+          <Search
+            value={input}
+            onChange={onChange}
+            locations={data}
+            isLoading={isLoading}
+          />
 
           {/* List */}
-          <List locations={data} />
+          <Results locations={data} />
         </main>
       </Container>
     </div>

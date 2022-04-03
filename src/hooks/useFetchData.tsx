@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ILocations, PlaceType } from "../types/Location";
+
 import { API_KEY, API_URL } from "../constants";
+
+import { ILocations, PlaceType } from "../types/Location";
 
 export const useFetchData = (input: string, filters?: PlaceType[]) => {
   const fetchData = async () => {

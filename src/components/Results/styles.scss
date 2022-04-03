@@ -3,7 +3,7 @@
 
 $dataBorderRadius: 15px;
 
-.list {
+.results {
   margin-top: 4rem;
 
   &__title {
@@ -42,8 +42,9 @@ $dataBorderRadius: 15px;
       }
 
       .data {
+        line-height: 2;
         overflow: hidden;
-        padding: 20px 5px;
+        padding: 10px 5px;
         text-overflow: ellipsis;
         -webkit-line-clamp: 1;
 

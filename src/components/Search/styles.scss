@@ -5,6 +5,7 @@ $inputBorderRadius: 2px;
 $inputBoxShadow: 0 0 10px 2px #00000033;
 
 .map {
+  background: $terciaryColor;
   position: relative;
 
   .form {
@@ -28,6 +29,7 @@ $inputBoxShadow: 0 0 10px 2px #00000033;
       border-radius: $inputBorderRadius;
       box-shadow: $inputBoxShadow;
       display: flex;
+      padding: 0 0.75rem;
       width: 100%;
 
       &:focus-within {
@@ -36,7 +38,19 @@ $inputBoxShadow: 0 0 10px 2px #00000033;
 
       &__icon {
         color: black;
-        margin-left: 0.75rem;
+
+        &--loading {
+          animation: loading 0.75s infinite linear;
+
+          @keyframes loading {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(359deg);
+            }
+          }
+        }
       }
 
       &__bar {

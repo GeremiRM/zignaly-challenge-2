@@ -2,17 +2,16 @@ import "./styles.scss";
 
 import { ILocations, Coordinates } from "../../types/Location";
 
-interface ListProps {
+interface ResultsProps {
   locations: ILocations;
 }
 
-export const List: React.FC<ListProps> = ({ locations }) => {
+export const Results: React.FC<ResultsProps> = ({ locations }) => {
   const renderCoords = (coords: Coordinates) => {
     return `Lat: ${coords[0].toFixed(3)}, Log: ${coords[1].toFixed(3)}`;
   };
 
   const renderLocations = () => {
-    console.log(locations);
     return locations?.map((location) => (
       <tr className="row" key={location.id}>
         <td className="data">{location.text}</td>
@@ -23,10 +22,10 @@ export const List: React.FC<ListProps> = ({ locations }) => {
   };
 
   return (
-    <section className="list">
+    <section className="results">
       {/* Table */}
 
-      <h2 className="list__title">Results</h2>
+      <h2 className="results__title">Results</h2>
       <div className="table-container">
         <table className="table">
           {/* Table - Head */}
