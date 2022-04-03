@@ -16,8 +16,8 @@
   @include large {
     background: linear-gradient(
       180deg,
-      $secondaryColor 50%,
-      $terciaryColor 50%
+      $secondaryColor 800px,
+      $terciaryColor 800px
     );
   }
   .title {

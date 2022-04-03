@@ -12,6 +12,7 @@ export const List: React.FC<ListProps> = ({ locations }) => {
   };
 
   const renderLocations = () => {
+    console.log(locations);
     return locations?.map((location) => (
       <tr className="row" key={location.id}>
         <td className="data">{location.text}</td>

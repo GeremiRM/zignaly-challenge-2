@@ -5,7 +5,7 @@ import { DF_FILTERS } from "../../../constants";
 
 import "./styles.scss";
 
-export const ListFilters: React.FC = () => {
+export const Filters: React.FC = () => {
   const filters = DF_FILTERS;
 
   const { activeFilters, selectFilter } = useContext(Context);
@@ -14,7 +14,7 @@ export const ListFilters: React.FC = () => {
     return filters.map((filter) => (
       <p
         className={
-          "list-filters__filter" +
+          "filters__filter" +
           ` ${activeFilters.includes(filter) && "list-filters__filter--active"}`
         }
         key={filter}
@@ -27,5 +27,12 @@ export const ListFilters: React.FC = () => {
     ));
   };
 
-  return <div className="list-filters">{renderFilters()}</div>;
+  return (
+    <div className="search-filters">
+      <div className="title">
+        <p className="title__text">Filters</p>
+      </div>
+      <div className="filters">{renderFilters()}</div>
+    </div>
+  );
 };

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { Suggestions } from "./Suggestions";
 import { useDetectClickOutside } from "react-detect-click-outside";
+
+// Components
+import { Suggestions } from "./Suggestions";
+import { Map } from "./Map";
+import { Filters } from "./Filters";
+
 import "./styles.scss";
 
 import { ILocations, Coordinates } from "../../types/Location";
-import { Map } from "./Map";
-import { ListFilters } from "./Filters";
 
 type submitEvt = React.FormEvent<HTMLFormElement>;
 
@@ -47,7 +50,7 @@ export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
   return (
     <section className="map">
       {/* Filters */}
-      <ListFilters />
+      <Filters />
 
       {/* Form */}
       <form className="form" autoComplete="off" onSubmit={onSubmit} ref={ref}>

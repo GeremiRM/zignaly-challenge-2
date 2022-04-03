@@ -48,7 +48,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/lodash": "^4.14.181",
-    "@types/mapbox-gl": "^2.6.3"
+    "@types/mapbox-gl": "^2.6.3",
+    "react-test-renderer": "^18.0.0"
   }
 }

@@ -1,4 +1,5 @@
 @import "../../../styles/variables";
+@import "../../../styles/mixins";
 
 $firstChildBg: #e7e5e5;
 $hoverBg: #eeeeee;
@@ -11,7 +12,7 @@ $boxShadow: 0 0 10px 2px #00000033;
   -ms-overflow-style: none;
   overflow-y: scroll;
   scrollbar-width: none;
-  width: 250px;
+  width: 100%;
 
   &::-webkit-scrollbar {
     display: none;

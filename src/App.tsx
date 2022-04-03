@@ -5,10 +5,10 @@ import { useFetchData } from "./hooks/useFetchData";
 import { Search } from "./components/Search";
 import { Container } from "./components/shared/Container";
 import { Header } from "./components/Header";
+import { Context } from "./state/Context";
 
 import "./App.scss";
 import { List } from "./components/List";
-import { Context } from "./state/Context";
 
 type changeEvt = React.ChangeEvent<HTMLInputElement>;
 
