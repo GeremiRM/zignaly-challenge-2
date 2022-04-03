@@ -1,0 +1,28 @@
+@import "../../../styles/mixins";
+
+.list-filters {
+  display: grid;
+  gap: 0.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+
+  &__filter {
+    background-color: #444;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    text-transform: capitalize;
+
+    &:hover {
+      background-color: #555;
+    }
+
+    &--active {
+      background-color: #333;
+
+      &:hover {
+        background-color: #3d3d3d;
+      }
+    }
+  }
+}

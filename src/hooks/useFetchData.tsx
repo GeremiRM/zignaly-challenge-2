@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ILocations } from "../types/Location";
+import { ILocations, PlaceType } from "../types/Location";
+import { API_KEY, API_URL } from "../constants";
 
-const API_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-
-const API_KEY = process.env.REACT_APP_API_KEY;
-
-export const useFetchData = (input: string) => {
+export const useFetchData = (input: string, filters?: PlaceType[]) => {
   const fetchData = async () => {
     const { data } = await axios.get(
-      API_URL + encodeURIComponent(input) + ".json?access_token=" + API_KEY
+      `${API_URL} ${encodeURIComponent(
+        input
+      )}.json?limit=10&type=${filters?.join(",")}&access_token=${API_KEY}`
     );
 
     return data.features;

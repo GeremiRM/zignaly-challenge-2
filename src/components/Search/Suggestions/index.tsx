@@ -15,7 +15,7 @@ export const Suggestions: React.FC<SuggestionsProps> = ({
 }) => {
   const renderSuggestions = () => {
     return suggestions?.map((suggestion) => (
-      <div
+      <li
         className="suggestion"
         key={suggestion?.id}
         onClick={() => {
@@ -24,11 +24,11 @@ export const Suggestions: React.FC<SuggestionsProps> = ({
       >
         <p className="suggestion__title">{suggestion.text}</p>
         <p className="suggestion__desc">{suggestion?.place_name}</p>
-      </div>
+      </li>
     ));
   };
 
   if (!display) return null;
 
-  return <div className="suggestions">{renderSuggestions()}</div>;
+  return <ul className="suggestions">{renderSuggestions()}</ul>;
 };

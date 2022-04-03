@@ -3,7 +3,7 @@ export type ILocations = ILocation[] | undefined;
 export interface ILocation {
   id: string;
   type: string;
-  place_type: string[];
+  place_type: [PlaceType];
   relevance: number;
   properties: Properties;
   text: string;
@@ -13,6 +13,16 @@ export interface ILocation {
   geometry: Geometry;
   context: Context[];
 }
+
+export type PlaceType =
+  | "address"
+  | "country"
+  | "region"
+  | "postcode"
+  | "district"
+  | "place"
+  | "neighborhood"
+  | "poi";
 
 export interface Geometry {
   type: string;

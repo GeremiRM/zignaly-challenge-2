@@ -7,6 +7,16 @@ $borderRadius: 2px;
 $boxShadow: 0 0 10px 2px #00000033;
 
 .suggestions {
+  max-height: 240px;
+  -ms-overflow-style: none;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  width: 250px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .suggestion {
     background-color: #ffffff;
     border: none;
@@ -26,6 +36,7 @@ $boxShadow: 0 0 10px 2px #00000033;
 
     &__title {
       font-size: 0.9rem;
+      line-height: 1.5;
       margin-bottom: 0.5rem;
     }
 

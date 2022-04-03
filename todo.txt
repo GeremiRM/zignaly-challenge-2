@@ -1,0 +1,8 @@
+1) At the moment, the list at the bottom isn't working properly,
+  one possible fix for this is to put an h1 or something similar.
+  That way the separation between the map and the list is not dependant
+  on the list itself, but the h1. 
+
+2) If you can, make the filters for the search bar. Otherwise, don't
+
+3) ???

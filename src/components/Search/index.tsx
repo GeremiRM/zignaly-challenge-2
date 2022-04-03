@@ -1,15 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import mapboxgl from "mapbox-gl";
+import { useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { Suggestions } from "./Suggestions";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import "./styles.scss";
 
-import { ILocations } from "../../types/Location";
+import { ILocations, Coordinates, PlaceType } from "../../types/Location";
+import { Map } from "./Map";
+import { ListFilters } from "./Filters";
 
 type submitEvt = React.FormEvent<HTMLFormElement>;
-
-type Coords = [number, number];
 
 interface MapProps {
   value: string;
@@ -18,51 +17,51 @@ interface MapProps {
 }
 
 // Default values
-const DF_ZOOM = 9;
 
 // Madrid
-const DF_COORDS: Coords = [-3.703339, 40.416729];
+const DF_COORDS: Coordinates = [-3.703339, 40.416729];
 
-export const Map: React.FC<MapProps> = ({ value, onChange, locations }) => {
-  const [coords, setCoords] = useState<Coords>(DF_COORDS);
+export const Search: React.FC<MapProps> = ({ value, onChange, locations }) => {
+  const [coords, setCoords] = useState<Coordinates>(DF_COORDS);
+  const [activeFilters, setActiveFilters] = useState<PlaceType[]>([]);
   const [displaySuggs, setDisplaySuggs] = useState(false);
+
   const ref = useDetectClickOutside({
     onTriggered: () => setDisplaySuggs(false),
   });
 
-  const mapContainer = useRef(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-
-  mapboxgl.accessToken = process.env.REACT_APP_API_KEY!;
-
-  const selectCoord = (coordinates: Coords) => {
+  // Select suggestion
+  const selectSugg = (coordinates: Coordinates) => {
     setCoords(coordinates);
     setDisplaySuggs(false);
-    map.current?.easeTo({ center: coordinates, zoom: 7 });
+  };
+
+  const selectFilter = (selected: PlaceType) => {
+    setActiveFilters(
+      activeFilters.includes(selected)
+        ? activeFilters.filter((filter) => selected !== filter)
+        : activeFilters.concat(selected)
+    );
   };
 
   const onSubmit = (e: submitEvt) => {
     e.preventDefault();
-    if (locations) {
-      const { coordinates } = locations[0]!.geometry;
-      setCoords(coordinates);
-      map.current?.easeTo({ center: coordinates, zoom: 7 });
-    }
+
+    if (!locations) return;
+
+    const { coordinates } = locations[0]!.geometry;
+    setCoords(coordinates);
   };
 
-  useEffect(() => {
-    if (map.current) return; //
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current!,
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: coords,
-      zoom: DF_ZOOM,
-    });
-  });
-
   return (
-    <div className="map">
+    <section className="map">
+      {/* Filters */}
+
+      <ListFilters onSelect={selectFilter} activeFilters={activeFilters} />
+
+      {/* Form */}
       <form className="form" autoComplete="off" onSubmit={onSubmit} ref={ref}>
+        {/* Input */}
         <div className="input">
           <BiSearchAlt2 className="input__icon" />
           <input
@@ -73,13 +72,17 @@ export const Map: React.FC<MapProps> = ({ value, onChange, locations }) => {
             onFocus={(e) => setDisplaySuggs(true)}
           />
         </div>
+
+        {/* Suggestions */}
         <Suggestions
           suggestions={locations}
-          onSelect={selectCoord}
+          onSelect={selectSugg}
           display={displaySuggs}
         />
       </form>
-      <div ref={mapContainer} className="map-container"></div>
-    </div>
+
+      {/* Map */}
+      <Map coords={coords} />
+    </section>
   );
 };

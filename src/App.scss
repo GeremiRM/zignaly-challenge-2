@@ -1,13 +1,41 @@
+@import "./styles/mixins";
+@import "./styles/variables";
+
 .app {
   padding-bottom: 4rem;
+  background: linear-gradient(
+    180deg,
+    $secondaryColor 400px,
+    $terciaryColor 400px
+  );
+  color: $textColor;
+  font-family: "Roboto", sans-serif;
+  min-height: 120vh;
+  padding-bottom: 4rem;
 
-  .body {
+  @include large {
+    background: linear-gradient(
+      180deg,
+      $secondaryColor 50%,
+      $terciaryColor 50%
+    );
+  }
+  .title {
     margin-top: 4rem;
 
-    .title {
-      &__line {
-        margin-bottom: 2rem;
+    &__line {
+      font-size: 35px;
+      line-height: 1.25;
+      margin-bottom: 2rem;
+
+      @include large {
+        font-size: 40px;
       }
     }
+  }
+
+  .main {
+    height: 100%;
+    margin-top: 4rem;
   }
 }
